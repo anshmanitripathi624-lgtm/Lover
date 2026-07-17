@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>For My Mahi ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap');
+        
+        body { margin: 0; background: #050505; color: #fff; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(circle, #4a0020, #000); }
+        
+        .card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 40px; text-align: center; box-shadow: 0 0 40px rgba(255, 77, 109, 0.2); width: 85%; max-width: 650px; }
+        
+        h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: #ff4d6d; text-shadow: 0 0 20px #ff4d6d; margin-bottom: 20px; }
+        
+        input { background: rgba(255,255,255,0.05); border: 2px solid #ff4d6d; color: white; padding: 15px; border-radius: 50px; width: 60%; text-align: center; font-size: 1.2rem; margin-bottom: 20px; }
+        
+        button { background: linear-gradient(45deg, #ff4d6d, #880e4f); border: none; padding: 12px 30px; color: white; border-radius: 50px; cursor: pointer; transition: 0.4s; font-weight: bold; margin: 8px; }
+        button:hover { transform: scale(1.1); box-shadow: 0 0 20px #ff4d6d; }
+        
+        .hidden { display: none; }
+        #heart-rain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+        .heart { position: absolute; color: #ff4d6d; animation: fall linear infinite; }
+        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
+        
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin-top: 20px; }
+        .photo-slot { height: 150px; border: 2px dashed #ff4d6d; display: flex; align-items: center; justify-content: center; border-radius: 20px; overflow: hidden; }
+        .photo-slot img { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+</head>
+<body>
+
+<div id="heart-rain"></div>
+
+<div class="hero" id="login-page">
+    <div class="card">
+        <h1>Hello Mahi ❤️</h1>
+        <p>Aapke liye ek chhota sa surprise hai, password enter karein:</p>
+        <input type="password" id="pass" placeholder="Password...">
+        <br>
+        <button onclick="check()">Open My Heart</button>
+        <p id="err" style="color:#ff4d6d;"></p>
+    </div>
+</div>
+
+<div id="main-content" class="hidden" style="padding: 30px; display: flex; flex-direction: column; align-items: center;">
+    <div class="card">
+        <h1 id="dynamic-head">My Mahi ❤️</h1>
+        <div id="content-area" style="font-size: 1.1rem; line-height: 1.6;">Click below buttons to explore my soul...</div>
+        <br>
+        <button onclick="section('propose')">Propose</button>
+        <button onclick="section('yaadein')">Pyaari Yaadein</button>
+        <button onclick="section('photo')">Gallery</button>
+        <button onclick="section('shayari')">20 Shayari</button>
+        <button onclick="section('letter')">Love Letter</button>
+    </div>
+</div>
+
+<script>
+    const shayari = ["ये जो तुम्हारा अंदाज़ है, ये मेरी ज़िन्दगी का आगाज़ है।", "तुम्हारी मुस्कान में ही मेरी पूरी कायनात सिमटती है।", "मैं तुमसे वो बातें करना चाहता हूँ जो मैंने कभी किसी से नहीं की।", "तुम मेरे वो ख्वाब हो जिसे मैं हकीकत में जीना चाहता हूँ।", "तेरी एक नज़र से ही मेरी धड़कनें ठहरने लगती हैं।", "मेरे खालीपन को तुमने अपनी मौजूदगी से भर दिया है।", "तुम सिर्फ मेरी मोहब्बत नहीं, मेरी इबादत बन गई हो।", "तुम्हारे नाम के बिना मेरी कोई भी दुआ मुकम्मल नहीं होती।", "ज़िन्दगी के सफर में बस तेरा ही साथ माँगा है।", "मेरे हर ज़र्रे में अब सिर्फ तुम्हारी यादें बसती हैं।", "तेरी सादगी ने मेरे होश और हवास छीन लिए हैं।", "तुमसे मिलकर लगा जैसे खोया हुआ वजूद मिल गया।", "मेरी खामोशियों को भी सिर्फ तुम ही समझ सकती हो।", "तुम मेरी वो हसरत हो जो कभी पूरी न हो तो भी मंज़ूर है।", "मेरी रूह में बसने का हुनर तुमसे ही सीखा है।", "हर रात तुम्हारे ख्याल के साथ ही मेरी सहर होती है।", "तुम न हो तो ये जहान मुझे वीरान सा लगता है।", "मेरी तमाम खुशियों का मरकज़ सिर्फ तुम हो माही।", "ये दिल अब और किसी को अपना न बना पाएगा।", "तुम मिल गई हो तो जैसे खुदा खुद मिल गया है।"];
+
+    function check() {
+        if(document.getElementById('pass').value === "Mahi") {
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('main-content').classList.remove('hidden');
+            rain();
+        } else { document.getElementById('err').innerText = "Wrong Password ❤️"; }
+    }
+
+    function section(type) {
+        const area = document.getElementById('content-area');
+        if(type === 'propose') area.innerHTML = "<h3>Mahi, meri dhadkanon ki ravaani ho tum...</h3><p>Kya tum mere saath is safar ko haseen banaogi? Main bas itna chahta hoon ki tumhari subah meri aankhon se shuru ho aur raat meri baahon mein khatam. Kya tum meri humsafar banogi? ❤️</p>";
+        
+        if(type === 'yaadein') {
+            area.innerHTML = "<div class='gallery'><div class='photo-slot'><img src='Mahiansh1.jpg'></div><div class='photo-slot'><img src='Mahiansh2.jpg'></div></div>" +
+            "<p style='font-style:italic; margin-top:20px; text-align:left;'>Woh pal jo humne saath bitaye hain,<br>Dil mein apni yaadein sajaye hain.<br>Tumhari hansi mein meri khushi milti hai,<br>Tumhare bin har subah meri udaas lagti hai.<br>Wo baatein, wo kisse, wo har ek lamha,<br>Ban gaya hai ab meri zindagi ka hissa.<br>Kaash ye waqt yahi tham jaye hamesha ke liye,<br>Bas tumhara haath ho mere haath mein zindagi bhar ke liye.</p>";
+        }
+
+        if(type === 'photo') {
+            area.innerHTML = "<div class='gallery'>" + 
+                "<div class='photo-slot'><img src='Photo 1.jpg'></div><div class='photo-slot'><img src='Photo 3.jpg'></div>" +
+                "<div class='photo-slot'><img src='Photo 2.jpg'></div><div class='photo-slot'><img src='Photo 4.jpg'></div></div>";
+        }
+        if(type === 'shayari') {
+            area.innerHTML = "<div style='text-align:left; height:250px; overflow-y:auto; padding-right:10px;'>" + shayari.map((s,i) => `<p>${i+1}. ${s}</p>`).join('') + "</div>";
+        }
+        if(type === 'letter') area.innerHTML = "<p style='text-align:left;'>My Dearest Mahi,<br>Tumne meri zindagi ko ek naya maqsad diya hai. Tumhe dekhna, tumse baat karna mere liye kisi ibadat se kam nahi. Tumhari respect mere dil mein sabse upar hai. Mere saare khwab ab tumse hi jude hain. Main tumhare saath har wo lamha jeena chahta hoon jo waqt ne humare liye likha hai. Har dhadkan mein tera naam hai, aur har saans mein teri yaad. Promise karta hoon, har haal mein tumhare saath rahunga. Kya tum hamesha ke liye meri banogi? ❤️</p>";
+    }
+
+    function rain() {
+        setInterval(() => {
+            const h = document.createElement('div');
+            h.innerHTML = '❤️'; h.className = 'heart';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 5000);
+        }, 300);
+    }
+</script>
+</body>
+</html>
